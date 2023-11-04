@@ -5,6 +5,8 @@ A script to make your OWN Nano 11 image.
 This is a script to automate the build of an Nano 11 iso.
 The main goal of this is to use only Microsoft utilities like DISM, and nothing external. The only executable included is oscdimg.exe, which is provided in the Windows ADK and it is used to create bootable ISO images. Also included is an unattended answer file, which is used to bypass the MS account on OOBE.
 
+To download the post-setup, you will need git If you don't want to install it, you can skip the step
+
 ~~As of now, only build 22621.525 (the one that can be downloaded from the Microsoft website), 22621.1265 (the latest public build) and 25300 (latest Insider build as of now) are supported.~~ every build is supported
 
 Instructions:
