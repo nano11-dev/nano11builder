@@ -1,13 +1,11 @@
 # Nano11Builder
 
-A script to make your OWN Nano 11 image.
+A script to make your OWN Nano11 image.
 
 This is a script to automate the build of an Nano 11 iso.
 The main goal of this is to use only Microsoft utilities like DISM, and nothing external. The only executable included is oscdimg.exe, which is provided in the Windows ADK and it is used to create bootable ISO images. Also included is an unattended answer file, which is used to bypass the MS account on OOBE.
 
 To download the post-setup, you will need git If you don't want to install it, you can skip the step
-
-~~As of now, only build 22621.525 (the one that can be downloaded from the Microsoft website), 22621.1265 (the latest public build) and 25300 (latest Insider build as of now) are supported.~~ every build is supported
 
 Instructions:
 
@@ -25,9 +23,6 @@ Everything Nano11 Removes
 
 Known issues:
 
-~~1. Microsoft Teams (personal) and Cortana are still here. If you find a way to remove them before I find one, feel free to help!~~
-2. Although Edge is removed, the icon and a ghost of its taskbar pin are still available. Also, there are some remnants in the Settings. But the app in itself is deleted.
-3. Only en-us x64 is supported as of now. This can be easily fixable by the end user, just by replacing every instance of en-us with the language needed (like ro-RO and so on), and every x64 instance with arm64.
+1. Only en-us x64 is supported as of now. This can be easily fixable by the end user, just by replacing every instance of en-us with the language needed (like ro-RO and so on), and every x64 instance with arm64.
 
 And that's pretty much it for now!
-Thanks for trying it and let me know how you like it!
