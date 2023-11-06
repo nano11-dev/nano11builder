@@ -176,11 +176,6 @@ echo Cleanup complete.
 echo Unmounting image...
 dism /unmount-image /mountdir:c:\scratchdir /commit
 
-echo Adding post setup with git
-set /p skip=You need git on this step. If you don't have git or you want to skip this step, press s. 
-if not %skip==s (git clone https://github.com/nano11-dev/post-setup C:\scratchdir\Users\Default\Desktop\post-setup)
-echo Done adding post setup.
-
 echo Exporting image...
 Dism /Export-Image /SourceImageFile:c:\nano11\sources\install.wim /SourceIndex:%index% /DestinationImageFile:c:\nano11\sources\install2.wim /compress:max
 del c:\nano11\sources\install.wim
