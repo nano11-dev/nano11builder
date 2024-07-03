@@ -95,7 +95,13 @@ echo Removing Teams...
 dism /image:c:\scratchdir /Remove-ProvisionedAppxPackage /PackageName:MicrosoftTeams*
 echo Removing Cortana...
 dism /image:c:\scratchdir /Remove-ProvisionedAppxPackage /PackageName:Microsoft.549981C3F5F10*
-
+echo Removing Copilot
+del C:\scratchdir\windows\inboxapps\Microsoft.Copilot
+echo Removing Edge
+cd "C:\scratchdir\program files (x86)\microsoft"
+del Edge /s /q
+del EdgeCore /s /q
+del EdgeUpdate /s /q
 echo Removing of system apps complete! Now proceeding to removal of system packages...
 timeout /t 1 /nobreak > nul
 cls
@@ -117,7 +123,7 @@ echo Removing OneDrive:
 takeown /f C:\scratchdir\Windows\System32\OneDriveSetup.exe
 icacls C:\scratchdir\Windows\System32\OneDriveSetup.exe /grant Administrators:F /T /C
 del /f /q /s "C:\scratchdir\Windows\System32\OneDriveSetup.exe"
-echo Removal complete!
+echo Components removal complete!
 timeout /t 2 /nobreak > nul
 cls
 echo Loading registry...
@@ -149,12 +155,13 @@ Reg add "HKLM\zNTUSER\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryM
 			Reg add "HKLM\zSOFTWARE\Microsoft\PolicyManager\current\device\Start" /v "ConfigureStartPins" /t REG_SZ /d "{\"pinnedList\": [{}]}" /f >nul 2>&1
 echo Enabling Local Accounts on OOBE:
 Reg add "HKLM\zSOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v "BypassNRO" /t REG_DWORD /d "1" /f >nul 2>&1
-copy /y %~dp0autounattend.xml c:\scratchdir\Windows\System32\Sysprep\autounattend.xml
+reg add HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE /v HideOnlineAccountScreen /t REG_DWORD /d 1 /f /t REG_DWORD /d "1" /f >nul 2>&1
 echo Disabling Reserved Storage:
 Reg add "HKLM\zSOFTWARE\Microsoft\Windows\CurrentVersion\ReserveManager" /v "ShippedWithReserves" /t REG_DWORD /d "0" /f >nul 2>&1
 echo Disabling Chat icon:
 Reg add "HKLM\zSOFTWARE\Policies\Microsoft\Windows\Windows Chat" /v "ChatIcon" /t REG_DWORD /d "3" /f >nul 2>&1
 Reg add "HKLM\zNTUSER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "TaskbarMn" /t REG_DWORD /d "0" /f >nul 2>&1
+Reg add "
 echo Tweaking complete!
 echo Unmounting Registry...
 reg unload HKLM\zCOMPONENTS >nul 2>&1
