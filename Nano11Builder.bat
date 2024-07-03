@@ -96,7 +96,7 @@ dism /image:c:\scratchdir /Remove-ProvisionedAppxPackage /PackageName:MicrosoftT
 echo Removing Cortana...
 dism /image:c:\scratchdir /Remove-ProvisionedAppxPackage /PackageName:Microsoft.549981C3F5F10*
 echo Removing Copilot
-del C:\scratchdir\windows\inboxapps\Microsoft.Copilot
+del C:\scratchdir\windows\inboxapps\Microsoft.Copilot /q
 echo Removing Edge
 cd "C:\scratchdir\program files (x86)\microsoft"
 del Edge /s /q
