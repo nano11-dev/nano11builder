@@ -6,10 +6,8 @@ echo Welcome to the Nano11 image creator!
 timeout /t 3 /nobreak > nul
 cls
 
-rem Drive Letter
-
 set DriveLetter=
-set /p DriveLetter=Please enter the drive letter for the Windows 11 image to modify: 
+set /p DriveLetter=Please enter the drive letter for the Windows 11 ISO to modify: 
 set "DriveLetter=%DriveLetter%:"
 echo.
 if not exist "%DriveLetter%\sources\boot.wim" (
@@ -25,18 +23,19 @@ if not exist "%DriveLetter%\sources\install.wim" (
 	echo.Please enter the correct DVD Drive Letter..
 	goto :Stop
 )
-md C:\nano11
-echo Copying Windows image...
-xcopy.exe /E /I /H /R /Y /J %DriveLetter% C:\nano11 >nul
-echo Copy complete!
+
+mkdir C:\nano11
+echo Copying Windows image. This will take around 1 minute depending on your PC's specs.
+xcopy /E /I /H /R /Y /J %DriveLetter% C:\nano11 >nul
+echo Copying complete!
 sleep 2
 cls
-echo Getting image information:
+echo Getting image information...
 dism /Get-WimInfo /wimfile:c:\nano11\sources\install.wim
 set index=
-set /p index=Please enter the image index:
+set /p index=Please enter the image index: 
 set "index=%index%"
-echo Mounting Windows image. This may take a while.
+echo Mounting Windows image. This might take a while.
 echo.
 md c:\scratchdir
 dism /mount-image /imagefile:C:\nano11\sources\install.wim /index:%index% /mountdir:c:\scratchdir
